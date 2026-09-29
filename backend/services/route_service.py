@@ -202,11 +202,14 @@ def generate_routes(request: GenerateRoutesRequest) -> GenerateRoutesResponse:
     safe_weights.max_speed_kn = vessel_speed
 
     # ── 6. Run science pipeline ─────────────────────────────────────
+    # HIMDRISHTI_FAST_MODE=1 reduces compute for Render free tier deployment.
+    # Cuts ensemble members 48→16 and time buckets 30→15 (~3-4x faster).
+    _fast_mode = os.environ.get("HIMDRISHTI_FAST_MODE", "0") == "1"
     cfg = PipelineConfig(
         nx=26, ny=20,
         cell_size_m=15_000.0,
-        n_time_buckets=30,
-        n_ensemble_members=48,
+        n_time_buckets=15 if _fast_mode else 30,
+        n_ensemble_members=16 if _fast_mode else 48,
         ensemble_seed=7,
         vessel_class=ice_class,
         latitude_deg=-68.0,

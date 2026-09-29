@@ -36,8 +36,8 @@ export type { ApiState }
 // Timeout constants (H1 hardening)
 // ---------------------------------------------------------------------------
 
-/** Route generation timeout: 120 s (pipeline takes ~60 s) */
-const ROUTE_TIMEOUT_MS = 120_000
+/** Route generation timeout: 240 s (120 s pipeline + up to 60 s Render cold start) */
+const ROUTE_TIMEOUT_MS = 240_000
 
 /** Departure-window timeout: 300 s (4 candidates × ~60 s each) */
 const DEPARTURE_WINDOW_TIMEOUT_MS = 300_000

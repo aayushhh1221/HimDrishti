@@ -1,0 +1,471 @@
+/* =================================================================
+   shared-page.module.css — Phase 12 Shared Secondary Page Styles
+   SIH 2026 · PS 26059
+
+   Used by: ForecastExplorer, RiskCompliance, Provenance,
+            AuditLog, About
+
+   Provides a consistent design system for all secondary pages.
+   References design.md §5 (colour), §7 (typography), §8 (layout).
+   ================================================================= */
+
+/* ── Page shell ──────────────────────────────────────── */
+.page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 24px 32px;
+  background: #f7f8fa;
+  min-height: calc(100vh - 214px);
+}
+
+/* ── Page header row ─────────────────────────────────── */
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* ── Headings ─────────────────────────────────────────── */
+.heading {
+  font-size: 17px;
+  font-weight: 700;
+  color: #102a43;
+  margin: 0 0 4px 0;
+  line-height: 1.35;
+}
+
+.sub {
+  font-size: 13px;
+  color: #52606d;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 640px;
+}
+
+/* ── Section title (uppercase label above a card) ─────── */
+.sectionTitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: #334e68;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 10px;
+}
+
+/* ── Footer tag ───────────────────────────────────────── */
+.tag {
+  margin-top: 28px;
+  font-size: 11px;
+  color: #287d7a;
+  font-weight: 600;
+}
+
+/* ── Data-mode badge ──────────────────────────────────── */
+.modeBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  background: #312e1a;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+
+/* ── Cards ────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border: 1px solid #d9e1e8;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.04);
+}
+
+.cardTitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: #334e68;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e8eef4;
+}
+
+/* ── Definition list (key–value pairs) ───────────────── */
+.dl {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 5px 12px;
+}
+
+.dlRow {
+  display: contents;
+}
+
+.dlRow dt {
+  font-size: 12px;
+  color: #627282;
+  font-weight: 600;
+  padding: 2px 0;
+  align-self: center;
+}
+
+.dlRow dd {
+  font-size: 12px;
+  color: #243b53;
+  margin: 0;
+  padding: 2px 0;
+  align-self: center;
+}
+
+.mono {
+  font-family: "Noto Sans Mono", "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+
+/* ── Tables ───────────────────────────────────────────── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table th {
+  text-align: left;
+  padding: 6px 8px;
+  font-size: 11px;
+  color: #627282;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #d9e1e8;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 7px 8px;
+  color: #243b53;
+  border-bottom: 1px solid #edf2f7;
+  vertical-align: top;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background: #f7f8fa;
+}
+
+.rowSelected td {
+  background: #ebf8ff !important;
+}
+
+/* ── Status pills ─────────────────────────────────────── */
+.statusPill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.statusOk { background: #c6f6d5; color: #22543d; }
+.statusWarn { background: #fefcbf; color: #744210; }
+.statusError { background: #fed7d7; color: #742a2a; }
+
+/* ── Banner states ────────────────────────────────────── */
+.statusBanner {
+  background: #ebf8ff;
+  border: 1px solid #bee3f8;
+  border-left: 3px solid #3182ce;
+  color: #2b4c7e;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.warnBanner {
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-left: 3px solid #d97706;
+  color: #78350f;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.errorBanner {
+  background: #fff5f5;
+  border: 1px solid #feb2b2;
+  border-left: 3px solid #e53e3e;
+  color: #742a2a;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+/* ── Prototype / limitation notice box ───────────────── */
+.noticeBox {
+  background: #fffbeb;
+  border: 1px solid #f6e05e;
+  border-left: 3px solid #d97706;
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #78350f;
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+
+.noticeBox strong {
+  color: #92400e;
+}
+
+/* ── Horizon / mode selector buttons ─────────────────── */
+.selectorRow {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.selectorBtn {
+  padding: 5px 14px;
+  border-radius: 3px;
+  border: 1px solid #c9d4de;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 500;
+  color: #334e68;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+  font-family: inherit;
+}
+
+.selectorBtn:hover {
+  background: #edf2f7;
+  border-color: #a0aec0;
+}
+
+.selectorBtn:focus-visible {
+  outline: 2px solid #287d7a;
+  outline-offset: 2px;
+}
+
+.selectorBtnActive {
+  background: #0b1f33;
+  border-color: #0b1f33;
+  color: #fff;
+  font-weight: 600;
+}
+
+.selectorNote {
+  font-size: 11px;
+  color: #627282;
+  margin: 0;
+}
+
+/* ── Meta / timestamp row ─────────────────────────────── */
+.metaRow {
+  font-size: 12px;
+  color: #627282;
+  margin-bottom: 12px;
+}
+
+/* ── Explanation / note paragraphs ───────────────────── */
+.para {
+  font-size: 13px;
+  color: #334e68;
+  line-height: 1.6;
+  margin: 0 0 8px 0;
+}
+
+.para:last-child {
+  margin-bottom: 0;
+}
+
+.list {
+  font-size: 13px;
+  color: #334e68;
+  line-height: 1.7;
+  padding-left: 18px;
+  margin: 0;
+}
+
+/* ── Timeline (AuditLog) ──────────────────────────────── */
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: #d9e1e8;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 14px;
+  padding: 0 0 12px 0;
+  position: relative;
+}
+
+.timelineMarker {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #3182ce;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px #d9e1e8;
+  flex-shrink: 0;
+  margin-top: 2px;
+  z-index: 1;
+}
+
+.timelineContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.timelineHeader {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.timelineRole {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.timelineAction {
+  font-size: 12px;
+  font-weight: 600;
+  color: #243b53;
+}
+
+.timelineTime {
+  font-size: 10px;
+  color: #a0aec0;
+  font-family: monospace;
+  margin-left: auto;
+}
+
+.timelineDetail {
+  font-size: 11px;
+  color: #627282;
+  font-family: monospace;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+/* ── Provenance records ───────────────────────────────── */
+.provRecord {
+  border-bottom: 1px solid #edf2f7;
+  padding: 8px 0;
+}
+
+.provRecord:last-child { border-bottom: none; }
+.provSource { font-size: 11px; color: #627282; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.provDataset { font-size: 12px; color: #243b53; margin: 2px 0; }
+.provNote { font-size: 11px; color: #b7791f; font-style: italic; }
+
+.noteRow { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px solid #edf2f7; font-size: 12px; }
+.noteRow:last-child { border-bottom: none; }
+.noteSource { font-weight: 600; color: #334e68; min-width: 140px; flex-shrink: 0; }
+.noteText { color: #627282; line-height: 1.5; }
+
+/* ── Explanation block ────────────────────────────────── */
+.explanation {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #52606d;
+  line-height: 1.55;
+  padding: 8px 10px;
+  background: #f7f8fa;
+  border-radius: 3px;
+  border-left: 2px solid #d9e1e8;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .page {
+    padding: 16px 16px 24px;
+  }
+
+  .dl {
+    grid-template-columns: 140px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 12px 12px 20px;
+  }
+
+  .heading {
+    font-size: 15px;
+  }
+
+  .pageHeader {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dl {
+    grid-template-columns: 1fr;
+  }
+
+  .dlRow dt, .dlRow dd {
+    padding: 1px 0;
+  }
+
+  .dlRow dd {
+    color: #334e68;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #edf2f7;
+  }
+
+  .table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .selectorRow {
+    gap: 4px;
+  }
+}

@@ -1,0 +1,183 @@
+/* DataProvenancePanel.module.css — HimDrishti Phase 5 */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #d9e1e8;
+  border-radius: 4px;
+  overflow: hidden;
+  min-width: 0;
+  position: relative;
+}
+
+/* ── Header ──────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-bottom: 1px solid #d9e1e8;
+  flex-shrink: 0;
+}
+
+.headerTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #102a43;
+}
+
+.infoIcon {
+  color: #52606d;
+  cursor: help;
+  flex-shrink: 0;
+}
+
+/* ── Body ────────────────────────────── */
+.body {
+  flex: 1;
+  padding: 4px 14px 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+/* ── Footer ──────────────────────────── */
+.footer {
+  padding: 6px 14px 7px;
+  border-top: 1px solid #d9e1e8;
+  flex-shrink: 0;
+}
+
+.viewFullBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #287d7a;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 150ms ease;
+}
+
+.viewFullBtn:hover { color: #1e5f5d; }
+.viewFullBtn:focus-visible { outline: 2px solid #287d7a; outline-offset: 2px; border-radius: 2px; }
+
+/* ── Inline Drawer ───────────────────── */
+.drawer {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d9e1e8;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  overflow: hidden;
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 14px;
+  border-bottom: 1px solid #d9e1e8;
+  flex-shrink: 0;
+  background: #f0f4f8;
+}
+
+.drawerTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #102a43;
+}
+
+.drawerClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #52606d;
+  transition: background 150ms ease;
+}
+
+.drawerClose:hover { background: #d9e1e8; }
+.drawerClose:focus-visible { outline: 2px solid #287d7a; }
+
+.drawerBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.drawerRecord {
+  border: 1px solid #e9edf2;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.drawerRecordHeader {
+  padding: 5px 10px;
+  background: #f7f8fa;
+  font-size: 11px;
+  font-weight: 700;
+  color: #334e68;
+  border-bottom: 1px solid #e9edf2;
+}
+
+.drawerDl {
+  margin: 0;
+  padding: 4px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.drawerDlRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 3px 0;
+  border-bottom: 1px solid #f0f4f8;
+  font-size: 11px;
+}
+
+.drawerDlRow:last-child { border-bottom: none; }
+
+.drawerDlRow dt {
+  color: #52606d;
+  flex-shrink: 0;
+}
+
+.drawerDlRow dd {
+  color: #102a43;
+  font-weight: 600;
+  margin: 0;
+  text-align: right;
+}
+
+.drawerNote {
+  font-size: 10px;
+  color: #52606d;
+  background: #f7f8fa;
+  border: 1px solid #e9edf2;
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin: 0;
+  line-height: 1.5;
+}

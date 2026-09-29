@@ -1,0 +1,20 @@
+# HimDrishti — Git line-ending normalization
+# Ensures consistent line endings across Windows/Linux/macOS
+
+* text=auto eol=lf
+
+# Force binary for binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.nc binary
+*.h5 binary
+*.hdf5 binary
+*.tif binary
+*.tiff binary

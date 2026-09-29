@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ report_title|default('Voyage Plan &amp; POLARIS Dossier') }} — HimDrishti</title>
+  <style>
+  /* Inline CSS — WeasyPrint cannot resolve external stylesheets via relative paths */
+
+@page {
+  size: A4;
+  margin: 15mm 16mm 15mm 16mm;
+  @bottom-left   { content: "Government of India | Ministry of Earth Sciences"; font-size:7.5pt; color:#5d6875; }
+  @bottom-center { content: "HIMDRISHTI \2022 SIH 2026 Prototype"; font-size:7.5pt; color:#5d6875; }
+  @bottom-right  { content: "Page " counter(page) " of " counter(pages); font-size:7.5pt; color:#5d6875; }
+}
+:root{--navy:#17324d;--navy2:#234b6f;--teal:#0f6f78;--slate:#536272;--muted:#6d7885;--line:#cfd6dd;--line2:#e5e9ed;--wash:#f4f6f8;--wash2:#eef3f6;--warn:#9b5d00;--danger:#8d2a2a;}
+*{box-sizing:border-box;}
+body{font-family:"Liberation Sans",Arial,sans-serif;color:#1c2732;font-size:8.8pt;line-height:1.42;margin:0;background:#fff;}
+.page-break{page-break-before:always;} .no-break{page-break-inside:avoid;}
+.muted{color:var(--muted);} .mono{font-family:"Liberation Mono",monospace;}
+
+/* ── Government header ── */
+.gov-header{border-bottom:2px solid var(--navy);padding-bottom:7px;margin-bottom:12px;}
+.gov-header-top{display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.gov-identity{display:flex;align-items:center;gap:9px;flex:1;min-width:0;}
+.gov-flag{display:block;width:39px;height:26px;object-fit:contain;flex:0 0 auto;}
+.gov-copy{flex:1;min-width:0;}
+.gov-copy .line1{font-family:"Liberation Serif",Georgia,serif;font-size:13pt;font-weight:700;color:#182735;}
+.gov-copy .line2{font-size:9pt;color:#334658;margin-top:1px;}
+.org-right{text-align:right;font-size:8pt;color:var(--slate);line-height:1.3;min-width:135px;}
+.org-right strong{color:#243746;}
+
+/* ── Brand strip ── */
+.brand-strip{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;margin-top:10px;}
+.brand-wordmark{font-family:"Liberation Serif",Georgia,serif;font-size:21pt;font-weight:700;color:var(--navy);letter-spacing:1.3px;}
+.brand-sub{margin-top:1px;color:var(--slate);font-size:8.5pt;letter-spacing:.35px;}
+.brand-center{text-align:center;}
+.doc-type{border-left:1px solid var(--line);padding-left:12px;font-size:8.5pt;color:var(--slate);}
+.doc-type strong{display:block;color:var(--navy);font-size:9.5pt;}
+.prototype-badge{display:inline-block;margin-top:4px;padding:3px 7px;border:1px solid #ba7b3b;color:#8c520e;font-size:7.2pt;font-weight:700;letter-spacing:.55px;text-transform:uppercase;}
+
+/* ── Title block ── */
+.title-block{margin:13px 0 11px;border-left:4px solid var(--teal);padding-left:12px;}
+.title-block h1{margin:0;font-family:"Liberation Serif",Georgia,serif;font-size:20pt;line-height:1.15;color:var(--navy);}
+.title-block .subtitle{margin-top:6px;color:var(--slate);font-size:10pt;}
+
+/* ── Meta grid ── */
+.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid var(--line);background:var(--wash);margin-bottom:14px;}
+.meta-cell{padding:8px 9px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+.meta-cell:nth-child(3n){border-right:0;} .meta-cell:nth-last-child(-n+3){border-bottom:0;}
+.meta-label{color:var(--muted);font-size:7.2pt;text-transform:uppercase;letter-spacing:.45px;}
+.meta-value{margin-top:2px;color:#243746;font-weight:700;font-size:8.6pt;}
+
+/* ── Sections ── */
+.section{margin-top:11px;}
+.section-title{display:flex;align-items:baseline;gap:8px;border-bottom:1px solid var(--navy);padding-bottom:4px;margin-bottom:6px;}
+.section-title .num{font-size:8pt;color:var(--teal);font-weight:700;}
+.section-title h2{margin:0;font-family:"Liberation Serif",Georgia,serif;font-size:13pt;color:var(--navy);}
+
+/* ── Tables ── */
+.table{width:100%;border-collapse:collapse;margin:0;}
+.table th{background:var(--navy);color:white;font-size:7.8pt;text-align:left;padding:5px 6px;border:1px solid var(--navy);}
+.table td{padding:5px 6px;border:1px solid var(--line);vertical-align:top;}
+.table tr:nth-child(even) td{background:#fbfcfd;}
+.table .label{color:var(--muted);width:25%;font-size:8pt;} .table .value{color:#1d2a36;font-weight:600;}
+
+/* ── Summary box ── */
+.summary-box{border:1px solid #b7c8d4;background:#f7fafb;padding:10px 12px;}
+.summary-box .eyebrow{color:var(--teal);font-size:7.2pt;font-weight:700;text-transform:uppercase;letter-spacing:.65px;margin-bottom:4px;}
+.summary-box p{margin:0;}
+
+/* ── KPI grid ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.kpi{border:1px solid var(--line);background:#fff;padding:8px;}
+.kpi .label{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.35px;}
+.kpi .value{margin-top:2px;font-size:14pt;color:var(--navy);font-weight:700;}
+.kpi .unit{font-size:7.5pt;color:var(--slate);font-weight:400;}
+
+/* ── Risk band ── */
+.risk-band{display:grid;grid-template-columns:1.1fr 1fr 1fr;border:1px solid var(--line);margin-top:6px;}
+.risk-cell{padding:10px;border-right:1px solid var(--line);}
+.risk-cell:last-child{border-right:0;}
+.risk-label{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.35px;}
+.risk-value{margin-top:3px;font-size:13pt;font-weight:700;color:var(--navy);}
+.risk-note{margin-top:2px;font-size:7.4pt;color:var(--slate);}
+
+.route-line{padding:8px 10px;border-left:3px solid var(--teal);background:var(--wash2);margin:7px 0;font-weight:700;color:#243746;}
+.note{border:1px solid var(--line);background:#fcfcfc;padding:8px 10px;color:#465461;font-size:8pt;}
+
+/* ── Decision box ── */
+.decision-box{border:1px solid #aebbc5;padding:11px 12px;background:#f7f9fa;}
+.decision-head{display:flex;justify-content:space-between;gap:15px;align-items:center;}
+.decision-state{font-size:11pt;font-weight:700;color:var(--navy);}
+.authority{font-size:7.6pt;color:var(--slate);text-align:right;}
+
+/* ── Audit timeline ── */
+.timeline td:first-child{width:19%;white-space:nowrap;font-family:"Liberation Mono",monospace;font-size:7.2pt;color:var(--slate);}
+.timeline td:nth-child(2){width:18%;font-weight:700;color:var(--navy);}
+.timeline td:last-child{width:63%;}
+
+/* ── Disclaimer ── */
+.disclaimer{margin-top:16px;border-top:2px solid #7e858b;padding-top:7px;font-size:7.3pt;color:#646c73;}
+.disclaimer strong{color:#41484f;}
+  </style>
+</head>
+<body>
+<div class="paper">
+
+  {# ── Government header ── #}
+  <header class="gov-header">
+    <div class="gov-header-top">
+      {# Flag LEFT, immediately beside "Government of India" — per reference #}
+      <div class="gov-identity">
+        <img class="gov-flag" src="{{ flag_src }}" alt="National Flag of India">
+        <div class="gov-copy">
+          <div class="line1">Government of India</div>
+          <div class="line2">Ministry of Earth Sciences</div>
+        </div>
+      </div>
+      <div class="org-right">
+        <strong>National Centre for Polar</strong><br>
+        and Ocean Research<br>
+        Ministry of Earth Sciences
+      </div>
+    </div>
+    <div class="brand-strip">
+      <div>
+        <div class="brand-wordmark">HIMDRISHTI</div>
+        <div class="brand-sub">Polar Voyage Decision-Support &amp; Risk Assessment</div>
+      </div>
+      <div class="brand-center">
+        <span class="prototype-badge">SIH 2026 Prototype — Not for Operational Use</span>
+      </div>
+      <div class="doc-type">
+        <strong>Voyage Plan &amp; POLARIS Dossier</strong>
+        SIH 2026 &middot; PS 26059
+      </div>
+    </div>
+  </header>
+
+  {# ── Title block ── #}
+  <section class="title-block">
+    <h1>Voyage Plan &amp; POLARIS Dossier</h1>
+    <div class="subtitle">System-generated assessment based on submitted voyage configuration and available HimDrishti scientific pipeline outputs.</div>
+  </section>
+
+  {# ── Meta grid ── #}
+  <section class="meta-grid">
+    <div class="meta-cell"><div class="meta-label">Programme</div><div class="meta-value">Smart India Hackathon 2026</div></div>
+    <div class="meta-cell"><div class="meta-label">Problem Statement</div><div class="meta-value">SIH 2026 &middot; PS 26059</div></div>
+    <div class="meta-cell"><div class="meta-label">Document ID</div><div class="meta-value">HMDR-{{ dossier.session_id[:8]|upper }}</div></div>
+    <div class="meta-cell"><div class="meta-label">Generated (UTC)</div><div class="meta-value">{{ dossier.generated_at_utc[:19].replace('T',' ') }}</div></div>
+    <div class="meta-cell"><div class="meta-label">Assessment Region</div><div class="meta-value">Southern Ocean (60&deg;S&ndash;90&deg;S)</div></div>
+    <div class="meta-cell"><div class="meta-label">Record Status</div><div class="meta-value">Prototype assessment record</div></div>
+  </section>
+
+  {# ── 01 Executive Summary ── #}
+  <section class="section">
+    <div class="section-title"><span class="num">01</span><h2>Executive Summary</h2></div>
+    <div class="summary-box">
+      <div class="eyebrow">Voyage assessment</div>
+      <p>HimDrishti evaluated the configured voyage ({{ dossier.voyage_configuration.origin }} &#8594; {{ dossier.voyage_configuration.destination }})
+      using available deterministic routing and POLARIS risk-assessment outputs.
+      Operating mode: <strong>{{ dossier.voyage_configuration.operating_mode }}</strong>.
+      Selected route: <strong>{{ dossier.selected_route.name }}</strong>.
+      Captain decision recorded: <strong>{{ dossier.captain_decision.state }}</strong>.
+      This assessment is intended to support human review and does not constitute an operational navigation instruction.</p>
+    </div>
+  </section>
+
+  {# ── 02 Voyage Particulars ── #}
+  <section class="section">
+    <div class="section-title"><span class="num">02</span><h2>Voyage Particulars</h2></div>
+    <table class="table">
+      <tr>
+        <td class="label">Origin</td><td class="value">{{ dossier.voyage_configuration.origin }}</td>
+        <td class="label">Destination</td><td class="value">{{ dossier.voyage_configuration.destination }}</td>
+      </tr>
+      <tr>
+        <td class="label">Departure (UTC)</td><td class="value mono">{{ dossier.voyage_configuration.departure_time }}</td>
+        <td class="label">Vessel</td><td class="value">{{ dossier.voyage_configuration.vessel }}</td>
+      </tr>
+      <tr>
+        <td class="label">Operating Mode</td><td class="value">{{ dossier.voyage_configuration.operating_mode }}</td>
+        <td class="label">Max Risk Budget</td><td class="value">{{ (dossier.voyage_configuration.max_acceptable_risk * 100)|round(0)|int }}/100</td>
+      </tr>
+    </table>
+  </section>
+
+  {# ── 03 Route Assessment ── #}
+  <section class="section">
+    <div class="section-title"><span class="num">03</span><h2>Route Assessment</h2></div>
+    <div class="route-line">
+      {{ dossier.selected_route.name }}: {{ dossier.voyage_configuration.origin }} &#8594; Southern Ocean &#8594; {{ dossier.voyage_configuration.destination }}
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="label">Distance</div>
+        <div class="value">
+          {% if dossier.selected_route.total_distance_nm %}{{ dossier.selected_route.total_distance_nm|round(0)|int }}{% else %}&mdash;{% endif %}
+          <span class="unit">nm</span>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="label">Transit Time</div>
+        <div class="value">
+          {% if dossier.selected_route.estimated_duration_hours %}{{ dossier.selected_route.estimated_duration_hours|round(1) }}{% else %}&mdash;{% endif %}
+          <span class="unit">h</span>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="label">POLARIS RIO</div>
+        <div class="value">
+          {% if dossier.selected_route.polaris_rio is not none %}{{ dossier.selected_route.polaris_rio }}{% else %}&mdash;{% endif %}
+          <span class="unit">/ 100</span>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="label">Distinct Path</div>
+        <div class="value" style="font-size:10pt;">
+          {% if dossier.selected_route.is_distinct %}Yes{% else %}No&nbsp;&#9888;{% endif %}
+        </div>
+      </div>
+    </div>
+    {% if not dossier.selected_route.is_distinct and dossier.selected_route.convergence_note %}
+    <div class="note" style="margin-top:8px;"><strong>Route convergence:</strong> {{ dossier.selected_route.convergence_note }}</div>
+    {% endif %}
+  </section>
+
+  {# ── 04 POLARIS Risk & Compliance ── #}
+  <section class="section">
+    <div class="section-title"><span class="num">04</span><h2>POLARIS Risk &amp; Compliance</h2></div>
+    <div class="risk-band">
+      <div class="risk-cell">
+        <div class="risk-label">Risk Score</div>
+        <div class="risk-value">
+          {% if dossier.selected_route.polaris_rio is not none %}{{ dossier.selected_route.polaris_rio }}{% else %}&mdash;{% endif %}
+          <span style="font-size:8pt;font-weight:400;">/&nbsp;100</span>
+        </div>
+        <div class="risk-note">Computed from available POLARIS risk outputs.</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-label">Risk Level</div>
+        <div class="risk-value">{{ dossier.selected_route.risk_level or '&mdash;' }}</div>
+        <div class="risk-note">See route-level evidence.</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-label">Data Mode</div>
+        <div class="risk-value" style="font-size:9pt;">{{ dossier.selected_route.data_mode }}</div>
+        <div class="risk-note">{{ dossier.selected_route.prototype_notice[:80] if dossier.selected_route.prototype_notice else 'Prototype pipeline output.' }}</div>
+      </div>
+    </div>
+  </section>
+
+  {# ── 05 Route Geometry Trace ── #}
+  <section class="section">
+    <div class="section-title"><span class="num">05</span><h2>Route Geometry Trace</h2></div>
+    <table class="table">
+      <tr><th>Segment</th><th>Method / Source</th><th>Record</th></tr>
+      <tr><td><strong>Approach</strong></td><td>Great-circle approach to pipeline grid entry</td><td>Generated from voyage origin to model-domain entry</td></tr>
+      <tr><td><strong>Pipeline</strong></td><td>Deterministic Dijkstra / UCS route search (HimDrishti pipeline)</td><td>Pipeline-computed path cells via hazard field</td></tr>
+      <tr><td><strong>Arrival</strong></td><td>Grid exit to destination snap</td><td>Generated to {{ dossier.voyage_configuration.destination }}</td></tr>
+    </table>
+    <div class="note" style="margin-top:8px;">Route geometry shown here is the geometry returned by the current voyage session. No synthetic offset is applied merely to make routes appear different.</div>
+  </section>
+
+  {# ── 06 Alerts & Data Provenance ── #}
+  <section class="section no-break">
+    <div class="section-title"><span class="num">06</span><h2>Alerts &amp; Data Provenance</h2></div>
+    <table class="table">
+      <tr><th>Type</th><th>Message / Source</th><th>Time</th></tr>
+      {% for a in alerts %}
+      <tr><td><strong>{{ a.type }}</strong></td><td>{{ a.message }}</td><td>{{ a.time }}</td></tr>
+      {% else %}
+      <tr><td colspan="3" class="muted">No alert records supplied in this report payload.</td></tr>
+      {% endfor %}
+    </table>
+    <div style="height:7px"></div>
+    <table class="table">
+      <tr><th>Dataset / Component</th><th>Record / Status</th><th>Retrieved / Computed</th></tr>
+      {% for p in provenance %}
+      <tr><td><strong>{{ p.name }}</strong></td><td>{{ p.record }}</td><td>{{ p.retrieved_at }}</td></tr>
+      {% else %}
+      <tr><td colspan="3" class="muted">No provenance records supplied in this report payload.</td></tr>
+      {% endfor %}
+    </table>
+  </section>
+
+  {# ── 06b Sea-Ice Concentration Forecast (PS 26059) ── #}
+  {% if dossier.sea_ice_forecast %}
+  <section class="section no-break page-break">
+    <div class="section-title"><span class="num">06b</span><h2>Sea-Ice Concentration Forecast (PS 26059)</h2></div>
+    <table class="table">
+      <tr>
+        <td class="col-label">Forecast Method</td>
+        <td class="col-value">{{ dossier.sea_ice_forecast.method }}</td>
+        <td class="col-label">Baseline Method</td>
+        <td class="col-value">{{ dossier.sea_ice_forecast.baseline_method }}</td>
+      </tr>
+      <tr>
+        <td class="col-label">Forecast Horizon</td>
+        <td class="col-value">
+          {% if dossier.sea_ice_forecast.horizon_hours %}
+            {{ dossier.sea_ice_forecast.horizon_hours|join(', ') }} h (max {{ dossier.sea_ice_forecast.horizon_hours|max }} h)
+          {% else %}
+            &mdash;
+          {% endif %}
+        </td>
+        <td class="col-label">Data Mode</td>
+        <td class="col-value">{{ dossier.sea_ice_forecast.data_mode }}</td>
+      </tr>
+      <tr>
+        <td class="col-label">Reference Time</td>
+        <td class="col-value" style="font-family:monospace;font-size:7.5pt;">{{ dossier.sea_ice_forecast.reference_time[:19].replace('T', ' ') }} UTC</td>
+        <td class="col-label">Confidence / Status</td>
+        <td class="col-value">
+          {% if dossier.sea_ice_forecast.metrics and dossier.sea_ice_forecast.metrics.evaluation_status %}
+            {{ dossier.sea_ice_forecast.metrics.evaluation_status }}
+          {% elif dossier.sea_ice_forecast.steps and dossier.sea_ice_forecast.steps[0].confidence %}
+            {{ dossier.sea_ice_forecast.steps[0].confidence }}
+          {% else %}
+            AVAILABLE
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td class="col-label">Persistence MAE / RMSE</td>
+        <td class="col-value">
+          {% if dossier.sea_ice_forecast.metrics and dossier.sea_ice_forecast.metrics.persistence_mae is not none %}
+            MAE: {{ dossier.sea_ice_forecast.metrics.persistence_mae|round(4) }} | RMSE: {{ dossier.sea_ice_forecast.metrics.persistence_rmse|round(4) }}
+          {% else %}
+            &mdash;
+          {% endif %}
+        </td>
+        <td class="col-label">Model MAE / RMSE</td>
+        <td class="col-value">
+          {% if dossier.sea_ice_forecast.metrics and dossier.sea_ice_forecast.metrics.model_mae is not none %}
+            MAE: {{ dossier.sea_ice_forecast.metrics.model_mae|round(4) }} | RMSE: {{ dossier.sea_ice_forecast.metrics.model_rmse|round(4) }}
+            {% if dossier.sea_ice_forecast.metrics.model_better_than_persistence is not none %}
+              ({{ 'Superior' if dossier.sea_ice_forecast.metrics.model_better_than_persistence else 'Baseline retained' }})
+            {% endif %}
+          {% else %}
+            Baseline retained (no ML override)
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td class="col-label">Source Dataset</td>
+        <td class="col-value" colspan="3">
+          {{ dossier.sea_ice_forecast.source_dataset or 'Sea-ice observation field' }}
+          {% if dossier.sea_ice_forecast.source_organisation %}
+            &middot; {{ dossier.sea_ice_forecast.source_organisation }}
+          {% endif %}
+        </td>
+      </tr>
+    </table>
+    <div class="note" style="margin-top:8px;">Sea-ice forecast generated by HimDrishti forecast service. Evaluated using time-ordered verification. Only available fields displayed &mdash; no environmental values fabricated.</div>
+  </section>
+  {% endif %}
+
+  {# ── 07 Captain / Master Decision ── #}
+  <section class="section no-break {% if not dossier.sea_ice_forecast %}page-break{% endif %}">
+    <div class="section-title"><span class="num">07</span><h2>Captain / Master Decision</h2></div>
+    <div class="decision-box">
+      <div class="decision-head">
+        <div>
+          <div class="risk-label">Recorded decision</div>
+          <div class="decision-state">{{ dossier.captain_decision.state }}</div>
+          <div style="margin-top:4px;font-size:8pt;color:#334658;">Route: {{ dossier.captain_decision.route_name }}</div>
+          <div style="font-size:7.5pt;color:var(--muted);">{{ dossier.captain_decision.timestamp[:19].replace('T',' ') }} UTC</div>
+        </div>
+        <div class="authority">Final voyage and navigation authority<br><strong>Captain / Master remains responsible for the final decision.</strong></div>
+      </div>
+      {% if dossier.captain_decision.remarks %}
+      <div style="margin-top:8px;"><strong>Remarks:</strong> {{ dossier.captain_decision.remarks }}</div>
+      {% endif %}
+    </div>
+  </section>
+
+  {# ── 08 Audit Trail ── #}
+  <section class="section no-break page-break">
+    <div class="section-title"><span class="num">08</span><h2>Audit Trail ({{ dossier.audit_event_count }} events)</h2></div>
+    <table class="table timeline">
+      <tr><th>Time (UTC)</th><th>Event</th><th>Detail</th></tr>
+      {% for e in dossier.audit_log %}
+      <tr>
+        <td>{{ e.timestamp[:19].replace('T',' ') }}</td>
+        <td>{{ e.action }}</td>
+        <td>{{ e.detail }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="3" class="muted">No audit events supplied in this report payload.</td></tr>
+      {% endfor %}
+    </table>
+  </section>
+
+  {# ── Prototype disclaimer ── #}
+  <div class="disclaimer">
+    <strong>Prototype and use limitation:</strong> {{ dossier.prototype_disclaimer }}
+  </div>
+
+</div>{# /paper #}
+</body>
+</html>

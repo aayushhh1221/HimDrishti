@@ -1,0 +1,26 @@
+# HimDrishti — Root Requirements
+# SIH 2026 · PS 26059
+# Deployment: Render Web Service
+#
+# Render installs from this file by default.
+# This mirrors backend/requirements.txt — keep both in sync.
+
+# ── Web framework ─────────────────────────────────────────────
+fastapi==0.115.14
+uvicorn[standard]==0.49.0
+pydantic>=2.11.0
+
+# ── HTTP client ────────────────────────────────────────────────
+httpx>=0.28.0
+
+# ── Scientific core (ai/* and data_pipeline/*) ────────────────
+numpy>=1.24.0
+scipy>=1.14.0
+matplotlib>=3.11.0
+
+# ── Environment / config ──────────────────────────────────────
+python-dotenv>=1.0.0
+
+# ── Testing ───────────────────────────────────────────────────
+pytest>=7.0.0
+pytest-asyncio>=0.21.0

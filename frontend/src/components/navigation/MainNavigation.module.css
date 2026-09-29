@@ -1,0 +1,161 @@
+/* =============================================================
+   MainNavigation.module.css
+   SIH 2026 · PS 26188
+   Matches reference.png navigation — ~44px deep navy bar (#0b2545)
+   ============================================================= */
+
+.nav {
+  background: #0b2545;
+  height: 44px;
+  display: flex;
+  align-items: stretch;
+  padding: 0 16px;
+  position: sticky;
+  top: 118px; /* utility-bar (36px) + header (82px) */
+  z-index: 80;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  user-select: none;
+}
+
+.navInner {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* ── Nav items ──────────────────────────────────────── */
+.navList {
+  display: flex;
+  align-items: stretch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2px;
+}
+
+.navItem {
+  display: flex;
+  align-items: stretch;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 140ms ease, background 140ms ease;
+  white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+  border-radius: 4px;
+  margin: 4px 0;
+}
+
+.navLink:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navLink:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: -2px;
+  color: #ffffff;
+}
+
+/* Active state — bright blue background matching reference.png */
+.navLinkActive {
+  color: #ffffff !important;
+  background: #1976d2 !important;
+}
+
+.navLinkActive:hover {
+  background: #1565c0 !important;
+}
+
+.navIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Right side: Mission Mode segmented toggle ──────── */
+.missionModeContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.missionModeLabel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+.infoIcon {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.segmentedToggle {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.toggleBtn {
+  background: none;
+  border: none;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 3px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 140ms ease;
+  font-family: inherit;
+  line-height: 1.2;
+}
+
+.toggleBtn:hover {
+  color: #ffffff;
+}
+
+.toggleBtnActive {
+  background: #ffffff !important;
+  color: #0b2545 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .navLink {
+    padding: 0 10px;
+    font-size: 12px;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 900px) {
+  .missionModeContainer {
+    display: none;
+  }
+  .nav {
+    overflow-x: auto;
+  }
+}

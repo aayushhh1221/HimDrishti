@@ -1,0 +1,84 @@
+/* EnvironmentalForecastPanel.module.css
+   SIH 2026 · PS 26188
+   Matches reference.png Environmental Forecast (Selected Route) */
+
+.container {
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 6px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  user-select: none;
+  flex: 1;
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.cardLabel {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.canvasWrapper {
+  width: 100%;
+  height: 48px;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  background: #0f172a;
+}
+
+.previewSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.scaleRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  color: #64748b;
+  font-weight: 600;
+  padding: 0 1px;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,137 @@
+/* MapLegend.module.css — HimDrishti */
+
+.legendContainer {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 10;
+}
+
+.legendBtn {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  transition: all 120ms ease;
+}
+
+.legendBtn:hover {
+  background: #ffffff;
+  border-color: #94a3b8;
+}
+
+.legendBtn:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 1px;
+}
+
+.panel {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  z-index: 25;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 12px 14px;
+  min-width: 200px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  user-select: none;
+}
+
+.panelTitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  font-size: 11.5px;
+  color: #334155;
+  font-weight: 500;
+}
+
+.swatch {
+  width: 24px;
+  height: 4px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.swatchDashed {
+  background: repeating-linear-gradient(
+    to right,
+    currentColor 0px,
+    currentColor 4px,
+    transparent 4px,
+    transparent 7px
+  );
+  height: 2.5px;
+  border-radius: 0;
+}
+
+.swatchVessel {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #0f2b48;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.swatchDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  flex-shrink: 0;
+  box-shadow: 0 0 3px rgba(56, 189, 248, 0.8);
+}
+
+.swatchCone {
+  width: 16px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1px dashed #38bdf8;
+  flex-shrink: 0;
+}
+
+.swatchIce {
+  width: 16px;
+  height: 10px;
+  border-radius: 2px;
+  border: 1px solid #bae6fd;
+  flex-shrink: 0;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: 8px 0;
+}
+
+.footerNote {
+  font-size: 9.5px;
+  color: #94a3b8;
+  margin: 8px 0 0;
+  font-weight: 500;
+}

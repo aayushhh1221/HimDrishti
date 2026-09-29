@@ -1,0 +1,5 @@
+﻿/* Page placeholder — Phase 3 */
+.page { width: 100%; padding: 32px 24px; background: #f7f8fa; min-height: calc(100vh - 214px); }
+.heading { font-size: 21px; font-weight: 700; color: #102a43; margin-bottom: 8px; }
+.sub { font-size: 13px; color: #52606d; max-width: 520px; line-height: 1.6; }
+.tag { margin-top: 16px; font-size: 11px; color: #287d7a; font-weight: 600; }

@@ -1,0 +1,46 @@
+/* RoutePlanner.module.css */
+.page {
+  width: 100%;
+  height: calc(100vh - 214px); /* fill viewport below sticky headers */
+  background: #f7f8fa;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Placeholder — removed in Phase 4 */
+.placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.placeholderInner {
+  max-width: 480px;
+  text-align: center;
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid #d9e1e8;
+  border-radius: 6px;
+}
+
+.placeholderTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #102a43;
+  margin-bottom: 8px;
+}
+
+.placeholderSubtext {
+  font-size: 13px;
+  color: #52606d;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.placeholderTag {
+  font-size: 11px;
+  color: #287d7a;
+  font-weight: 600;
+}

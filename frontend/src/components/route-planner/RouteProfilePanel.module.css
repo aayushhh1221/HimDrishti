@@ -1,0 +1,97 @@
+/* RouteProfilePanel.module.css
+   SIH 2026 · PS 26188
+   Matches reference.png Route Profile (Selected Route) */
+
+.container {
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 6px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  user-select: none;
+  flex: 1;
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.tabGroup {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.tabBtn {
+  background: none;
+  border: none;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #64748b;
+  padding: 2px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 140ms ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.tabBtn:hover {
+  color: #0f172a;
+}
+
+.tabBtnActive {
+  background: #1976d2 !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 2px rgba(25, 118, 210, 0.2);
+}
+
+.chartWrapper {
+  width: 100%;
+  height: 68px;
+  position: relative;
+}
+
+.chartSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.axisXLabel {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 7.5px;
+  color: #64748b;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.axisYLabel {
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  font-size: 7.5px;
+  color: #64748b;
+  font-weight: 600;
+  pointer-events: none;
+}

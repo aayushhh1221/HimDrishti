@@ -1,0 +1,157 @@
+/* =============================================================
+   OperationalStatusRow.module.css
+   SIH 2026 · PS 26059
+   Matches reference-ui.png status strip — ~42px light bg
+   ============================================================= */
+
+.row {
+  background: #f0f4f8;
+  border-bottom: 1px solid #d9e1e8;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 0;
+  flex-shrink: 0;
+  position: sticky;
+  top: 172px; /* 36 + 88 + 48 */
+  z-index: 70;
+}
+
+/* ── Status items cluster ───────────────────────────── */
+.items {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 16px 0 0;
+  border-right: 1px solid #d9e1e8;
+  margin-right: 16px;
+  min-width: 0;
+}
+
+.item:last-child {
+  border-right: none;
+  margin-right: 0;
+}
+
+.itemIcon {
+  color: #52606d;
+  flex-shrink: 0;
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+.itemLabel {
+  font-size: 10px;
+  font-weight: 500;
+  color: #52606d;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.itemValue {
+  font-size: 12px;
+  font-weight: 600;
+  color: #102a43;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* Date updated — highlighted value pill (matches reference) */
+.datePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: #dbeafe;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1d4ed8;
+  white-space: nowrap;
+}
+
+/* All Synced — green status */
+.syncedValue {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #18794e;
+}
+
+/* ── Right: View Data Freshness ─────────────────────── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.freshnessBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: #ffffff;
+  border: 1px solid #d9e1e8;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #102a43;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 150ms ease, border-color 150ms ease;
+  white-space: nowrap;
+}
+
+.freshnessBtn:hover {
+  background: #f0f4f8;
+  border-color: #287d7a;
+  color: #287d7a;
+}
+
+.freshnessBtn:focus-visible {
+  outline: 2px solid #287d7a;
+  outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .row {
+    overflow-x: auto;
+    height: auto;
+    padding: 8px 16px;
+    top: auto;
+    position: relative;
+  }
+
+  .items {
+    gap: 0;
+    flex-wrap: nowrap;
+    min-width: max-content;
+  }
+}
+
+@media (max-width: 768px) {
+  .itemLabel {
+    display: none;
+  }
+}

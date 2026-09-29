@@ -1,0 +1,44 @@
+/* DecisionLayer.module.css — HimDrishti
+   SIH 2026 · PS 26059 / PS 26188
+   Lower four-panel decision & evidence row matching reference-ui2.png */
+
+.layer {
+  background: #eef2f6;
+  border-top: 1px solid #d9e2ec;
+  padding: 10px 12px 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  align-items: stretch;
+}
+
+/* ── Responsive: 1280px — keep 4 cols but tighter ── */
+@media (max-width: 1280px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+}
+
+/* ── Responsive: 1024px — 2×2 grid ─────────────── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}
+
+/* ── Responsive: mobile — single column ─────────── */
+@media (max-width: 768px) {
+  .layer {
+    padding: 8px 10px 12px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}

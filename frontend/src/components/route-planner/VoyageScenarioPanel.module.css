@@ -1,0 +1,487 @@
+/* VoyageScenarioPanel.module.css
+   SIH 2026 · PS 26188
+   Matches reference.png Left Panel — Voyage Configuration */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #ffffff;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+/* ── Header ─────────────────────────────────── */
+.header {
+  padding: 12px 14px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.headerPin {
+  color: #1976d2;
+}
+
+.headerTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.quickSetupBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  color: #0284c7;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 140ms ease;
+  font-family: inherit;
+}
+
+.quickSetupBtn:hover {
+  background: #e0f2fe;
+}
+
+.zapIcon {
+  color: #0284c7;
+}
+
+/* ── Mode Tabs ──────────────────────────────── */
+.modeTabs {
+  display: flex;
+  padding: 8px 14px 6px;
+  gap: 6px;
+}
+
+.tabBtn {
+  flex: 1;
+  padding: 5px 0;
+  font-size: 11.5px;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 140ms ease;
+  font-family: inherit;
+  text-align: center;
+}
+
+.tabBtnActive {
+  background: #1976d2 !important;
+  color: #ffffff !important;
+  border-color: #1976d2 !important;
+  box-shadow: 0 1px 2px rgba(25, 118, 210, 0.2);
+}
+
+/* ── Form Body ──────────────────────────────── */
+.body {
+  padding: 10px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #334155;
+  margin: 0;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 8px;
+  color: #64748b;
+  pointer-events: none;
+}
+
+.chevronIcon {
+  position: absolute;
+  right: 8px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  height: 34px;
+  padding: 0 26px 0 28px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #0f172a;
+  font-family: inherit;
+  font-weight: 500;
+  transition: border-color 140ms ease;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.15);
+}
+
+.select {
+  width: 100%;
+  height: 34px;
+  padding: 0 26px 0 28px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #0f172a;
+  font-family: inherit;
+  font-weight: 500;
+  appearance: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.15);
+}
+
+.splitRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.splitRow > * {
+  flex: 1;
+}
+
+/* ── Operating Mode Grid (3 cards) ─────────── */
+.operatingModesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.modeCard {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 8px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  transition: all 140ms ease;
+  text-align: center;
+  font-family: inherit;
+}
+
+.modeCard:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.modeCardActive {
+  border: 1.5px solid #1976d2 !important;
+  background: #f0f7ff !important;
+  box-shadow: 0 1px 3px rgba(25, 118, 210, 0.12);
+}
+
+.modeIcon {
+  color: #1976d2;
+  margin-bottom: 1px;
+}
+
+.modeName {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.modeDesc {
+  font-size: 8.5px;
+  color: #64748b;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+/* ── Accordion Sections ─────────────────────── */
+.accordionGroup {
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #f8fafc;
+  overflow: hidden;
+}
+
+.accordionHeader {
+  width: 100%;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f1f5f9;
+  border: none;
+  cursor: pointer;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1e293b;
+  font-family: inherit;
+}
+
+.accordionTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.accordionIcon {
+  color: #1976d2;
+}
+
+.accordionBody {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #ffffff;
+}
+
+.subFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subLabelRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.subLabel {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.subInfoIcon {
+  color: #94a3b8;
+  cursor: help;
+}
+
+.inputSmall {
+  width: 100%;
+  height: 26px;
+  padding: 0 4px 0 22px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 10.5px;
+  color: #0f172a;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.candidateBtn {
+  flex: 1;
+  height: 22px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-family: inherit;
+}
+
+.candidateBtn:hover:not(:disabled) {
+  background: #e2e8f0;
+}
+
+.sliderLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.valueBadge {
+  background: #e2e8f0;
+  color: #1e293b;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+
+.rangeSlider {
+  width: 100%;
+  accent-color: #1976d2;
+  cursor: pointer;
+  margin: 4px 0 0;
+}
+
+/* ── Toggle Switches (Navigation Constraints) ─ */
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  gap: 8px;
+}
+
+.toggleLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.toggleCheckbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggleSwitch {
+  width: 30px;
+  height: 16px;
+  background: #cbd5e1;
+  border-radius: 10px;
+  position: relative;
+  transition: background 150ms ease;
+  flex-shrink: 0;
+}
+
+.toggleSwitch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 150ms ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.toggleCheckbox:checked + .toggleSwitch {
+  background: #1976d2;
+}
+
+.toggleCheckbox:checked + .toggleSwitch::after {
+  transform: translateX(14px);
+}
+
+/* ── Risk Alert Box ─────────────────────────── */
+.riskAlertBox {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 11px;
+  color: #92400e;
+}
+
+.riskAlertIcon {
+  color: #d97706;
+  margin-bottom: 2px;
+}
+
+.riskAlertText {
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.ackRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ── Primary Generate Button ────────────────── */
+.generateBtn {
+  width: 100%;
+  height: 38px;
+  background: #1976d2;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 140ms ease, box-shadow 140ms ease;
+  font-family: inherit;
+  box-shadow: 0 1px 3px rgba(25, 118, 210, 0.3);
+  margin-top: 4px;
+}
+
+.generateBtn:hover:not(:disabled) {
+  background: #1565c0;
+  box-shadow: 0 2px 6px rgba(25, 118, 210, 0.4);
+}
+
+.generateBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.arrowIcon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

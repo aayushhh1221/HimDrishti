@@ -1,0 +1,207 @@
+{
+  "_comment": "HimDrishti Antarctic Navigation Basemap — SIH 2026 · PS 26059",
+  "_license": "Style: MIT. Tile data: © OpenFreeMap · © OpenMapTiles · © OpenStreetMap contributors (ODbL). DEMO DATA — not for operational navigation.",
+  "version": 8,
+  "name": "HimDrishti Antarctic Navigation",
+  "metadata": {
+    "himdrishti:version": "1.0.0",
+    "himdrishti:palette": "medium-blue ocean / warm-neutral land / pale-blue ice — matching reference-ui.png",
+    "himdrishti:note": "DEMO — not for navigation. Basemap only; scientific overlays are independent GeoJSON layers added by AntarcticMap.tsx."
+  },
+  "glyphs": "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
+  "sources": {
+    "ofm": {
+      "type": "vector",
+      "url": "https://tiles.openfreemap.org/planet",
+      "attribution": "© <a href='https://openfreemap.org' target='_blank'>OpenFreeMap</a> © <a href='https://www.openmaptiles.org/' target='_blank'>OpenMapTiles</a> Data from <a href='https://www.openstreetmap.org/copyright' target='_blank'>OpenStreetMap</a>"
+    }
+  },
+  "layers": [
+    {
+      "id": "bg-land",
+      "type": "background",
+      "paint": {
+        "background-color": "#cfc9be"
+      },
+      "_note": "Warm pale stone — default land base. Ocean/water painted over this."
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "ofm",
+      "source-layer": "water",
+      "paint": {
+        "fill-color": "#1a5276",
+        "fill-antialias": true
+      },
+      "_note": "Southern Ocean / sea — rich medium-blue matching reference-ui.png. Not near-black."
+    },
+    {
+      "id": "waterway",
+      "type": "line",
+      "source": "ofm",
+      "source-layer": "waterway",
+      "minzoom": 8,
+      "paint": {
+        "line-color": "#1a5276",
+        "line-width": 0.8,
+        "line-opacity": 0.6
+      },
+      "_note": "Rivers — only visible at high zoom (not relevant at Antarctic scale z3.8)"
+    },
+    {
+      "id": "landcover-ice",
+      "type": "fill",
+      "source": "ofm",
+      "source-layer": "landcover",
+      "filter": [
+        "match",
+        ["get", "class"],
+        ["ice", "snow", "glacier"],
+        true,
+        false
+      ],
+      "paint": {
+        "fill-color": "#d6eaf8",
+        "fill-opacity": 0.95
+      },
+      "_note": "Antarctic ice sheet / polar glaciers — pale icy blue-white as in reference-ui.png"
+    },
+    {
+      "id": "landcover-natural",
+      "type": "fill",
+      "source": "ofm",
+      "source-layer": "landcover",
+      "filter": [
+        "match",
+        ["get", "class"],
+        ["wood", "grass", "farmland", "farmyard", "wetland", "national_park", "meadow"],
+        true,
+        false
+      ],
+      "paint": {
+        "fill-color": "#b6c4a4",
+        "fill-opacity": 0.45
+      },
+      "_note": "Natural vegetation — muted, subtle on land masses"
+    },
+    {
+      "id": "boundary-country",
+      "type": "line",
+      "source": "ofm",
+      "source-layer": "boundary",
+      "filter": [
+        "all",
+        ["==", ["get", "admin_level"], 2],
+        ["!=", ["get", "maritime"], 1]
+      ],
+      "paint": {
+        "line-color": "#7f8c9a",
+        "line-width": 0.8,
+        "line-opacity": 0.5,
+        "line-dasharray": [4, 3]
+      },
+      "_note": "Country borders — subtle dashed lines, non-maritime only (keeps ocean clean)"
+    },
+    {
+      "id": "label-ocean",
+      "type": "symbol",
+      "source": "ofm",
+      "source-layer": "water_name",
+      "filter": [
+        "match",
+        ["get", "class"],
+        ["ocean", "sea"],
+        true,
+        false
+      ],
+      "layout": {
+        "text-field": [
+          "coalesce",
+          ["get", "name:en"],
+          ["get", "name"]
+        ],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          2, 9,
+          5, 13
+        ],
+        "text-letter-spacing": 0.14,
+        "text-max-width": 9,
+        "text-transform": "uppercase"
+      },
+      "paint": {
+        "text-color": "#4a90b8",
+        "text-opacity": 0.55,
+        "text-halo-color": "rgba(26,82,118,0.2)",
+        "text-halo-width": 1
+      },
+      "_note": "Ocean / sea name labels — soft atmospheric text only"
+    },
+    {
+      "id": "label-country",
+      "type": "symbol",
+      "source": "ofm",
+      "source-layer": "place",
+      "filter": ["==", ["get", "class"], "country"],
+      "minzoom": 2,
+      "maxzoom": 8,
+      "layout": {
+        "text-field": [
+          "coalesce",
+          ["get", "name:en"],
+          ["get", "name"]
+        ],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          2, 9,
+          5, 12
+        ],
+        "text-max-width": 8
+      },
+      "paint": {
+        "text-color": "#4a5f70",
+        "text-opacity": 0.65,
+        "text-halo-color": "rgba(207,201,190,0.85)",
+        "text-halo-width": 1.5
+      },
+      "_note": "Country names — minimal, for geographic orientation only. No city/road/POI labels."
+    },
+    {
+      "id": "label-continent",
+      "type": "symbol",
+      "source": "ofm",
+      "source-layer": "place",
+      "filter": ["==", ["get", "class"], "continent"],
+      "layout": {
+        "text-field": [
+          "coalesce",
+          ["get", "name:en"],
+          ["get", "name"]
+        ],
+        "text-font": ["Noto Sans Bold"],
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          1, 9,
+          4, 13
+        ],
+        "text-letter-spacing": 0.2,
+        "text-transform": "uppercase",
+        "text-max-width": 10
+      },
+      "paint": {
+        "text-color": "#556372",
+        "text-opacity": 0.48
+      },
+      "_note": "Continent names — very subtle reference labels only"
+    }
+  ]
+}

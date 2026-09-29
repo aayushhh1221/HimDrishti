@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ report_title|default('Voyage Plan & POLARIS Dossier') }}</title>
+  <link rel="stylesheet" href="{{ css_href|default('himdrishti_gov_report.css') }}">
+</head>
+<body>
+<!-- HimDrishti Government-style template: National Flag of India placed alongside Government of India identity. -->
+<div class="paper">
+  <header class="gov-header">
+    <div class="gov-header-top">
+      {% if emblem_src %}
+      <div class="gov-emblem-wrap">
+        <img class="gov-emblem" src="{{ emblem_src }}" alt="State Emblem of India">
+      </div>
+      {% endif %}
+      <div class="gov-identity">
+        <img class="gov-flag" src="{{ flag_src|default('assets/indian-flag-uploaded.png') }}" alt="National Flag of India">
+        <div class="gov-copy">
+          <div class="line1">Government of India</div>
+          <div class="line2">Ministry of Earth Sciences</div>
+        </div>
+      </div>
+      <div class="org-right">
+        <strong>National Centre for Polar</strong><br>
+        and Ocean Research<br>
+        Ministry of Earth Sciences
+      </div>
+    </div>
+    <div class="brand-strip">
+      <div>
+        <div class="brand-wordmark">HIMDRISHTI</div>
+        <div class="brand-sub">Polar Voyage Decision-Support &amp; Risk Assessment</div>
+      </div>
+      <div class="brand-center">
+        <span class="prototype-badge">SIH 2026 Prototype - Not for Operational Use</span>
+      </div>
+      <div class="doc-type">
+        <strong>{{ report_title|default('Voyage Plan & POLARIS Dossier') }}</strong>
+        {{ document_code|default('HMDR/VYG/01') }}
+      </div>
+    </div>
+  </header>
+
+  <section class="title-block">
+    <h1>{{ report_heading|default(report_title|default('Voyage Plan & POLARIS Dossier')) }}</h1>
+    <div class="subtitle">System-generated assessment based on the submitted voyage configuration and available HimDrishti scientific pipeline outputs.</div>
+  </section>
+
+  <section class="meta-grid">
+    <div class="meta-cell"><div class="meta-label">Programme</div><div class="meta-value">{{ programme|default('Smart India Hackathon 2026') }}</div></div>
+    <div class="meta-cell"><div class="meta-label">Problem Statement</div><div class="meta-value">{{ ps_id|default('SIH 2026 · PS 26059') }}</div></div>
+    <div class="meta-cell"><div class="meta-label">Document ID</div><div class="meta-value">{{ document_id|default('HMDR-' ~ generated_at|default('DEMO')) }}</div></div>
+    <div class="meta-cell"><div class="meta-label">Generated</div><div class="meta-value">{{ generated_at|default('29 Sep 2026, 10:33 IST') }}</div></div>
+    <div class="meta-cell"><div class="meta-label">Assessment Region</div><div class="meta-value">{{ region|default('Southern Ocean (60°S–90°S)') }}</div></div>
+    <div class="meta-cell"><div class="meta-label">Record Status</div><div class="meta-value">{{ status|default('Prototype assessment record') }}</div></div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><span class="num">01</span><h2>Executive Summary</h2></div>
+    <div class="summary-box">
+      <div class="eyebrow">Voyage assessment</div>
+      <p>{{ executive_summary|default('HimDrishti evaluated the configured voyage using the available deterministic routing and POLARIS risk-assessment outputs. The assessment is intended to support human review and does not constitute an operational navigation instruction.') }}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><span class="num">02</span><h2>Voyage Particulars</h2></div>
+    <table class="table">
+      <tr><td class="label">Origin</td><td class="value">{{ voyage.origin|default('Cape Town, South Africa') }}</td><td class="label">Destination</td><td class="value">{{ voyage.destination|default('Bharati Station, Larsemann Hills') }}</td></tr>
+      <tr><td class="label">Departure</td><td class="value">{{ voyage.departure|default('29 Sep 2026, 10:33 IST') }}</td><td class="label">Vessel</td><td class="value">{{ voyage.vessel|default('NCPOR Charter Vessel') }}</td></tr>
+      <tr><td class="label">Draft</td><td class="value">{{ voyage.draft|default('7.5 m') }}</td><td class="label">Speed</td><td class="value">{{ voyage.speed|default('12 kn') }}</td></tr>
+      <tr><td class="label">Operating Mode</td><td class="value">{{ voyage.operating_mode|default('BALANCED') }}</td><td class="label">Risk Budget</td><td class="value">{{ voyage.risk_budget|default('Not specified / post-search evaluation') }}</td></tr>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><span class="num">03</span><h2>Route Assessment</h2></div>
+    <div class="route-line">{{ route.route_label|default('Recommended Route') }}: {{ route.origin|default(voyage.origin|default('Cape Town')) }} → Southern Ocean → {{ route.destination|default(voyage.destination|default('Bharati Station')) }}</div>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="label">Distance</div><div class="value">{{ route.distance_nm|default('—') }} <span class="unit">nm</span></div></div>
+      <div class="kpi"><div class="label">Transit Time</div><div class="value">{{ route.transit_h|default('—') }} <span class="unit">h</span></div></div>
+      <div class="kpi"><div class="label">Risk Cost</div><div class="value">{{ route.risk_cost|default('—') }}</div></div>
+      <div class="kpi"><div class="label">Distinct Path</div><div class="value">{{ route.is_distinct|default('Not evaluated') }}</div></div>
+    </div>
+    {% if route.convergence_note %}
+    <div class="note" style="margin-top:8px;"><strong>Route convergence:</strong> {{ route.convergence_note }}</div>
+    {% endif %}
+  </section>
+
+  <section class="section">
+    <div class="section-title"><span class="num">04</span><h2>POLARIS Risk &amp; Compliance</h2></div>
+    <div class="risk-band">
+      <div class="risk-cell"><div class="risk-label">Risk Score</div><div class="risk-value">{{ risk.score|default('—') }} <span style="font-size:8pt;font-weight:400;">/ 100</span></div><div class="risk-note">Computed from available POLARIS risk outputs.</div></div>
+      <div class="risk-cell"><div class="risk-label">Risk Level</div><div class="risk-value">{{ risk.level|default('—') }}</div><div class="risk-note">{{ risk.level_note|default('See route-level evidence.') }}</div></div>
+      <div class="risk-cell"><div class="risk-label">RIO Category</div><div class="risk-value">{{ risk.rio_category|default('—') }}</div><div class="risk-note">POLARIS-derived category where available.</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><span class="num">05</span><h2>Route Geometry Trace</h2></div>
+    <table class="table">
+      <tr><th>Segment</th><th>Method / Source</th><th>Record</th></tr>
+      {% for s in route.segments|default([
+        {'name':'Approach','method':'Great-circle approach to pipeline grid entry','record':'Generated from voyage origin to model-domain entry'},
+        {'name':'Pipeline','method':'Deterministic route search','record':'Pipeline-computed path cells'},
+        {'name':'Arrival','method':'Grid exit to destination snap','record':'Generated to Bharati destination'}
+      ]) %}
+      <tr><td><strong>{{ s.name }}</strong></td><td>{{ s.method }}</td><td>{{ s.record }}</td></tr>
+      {% endfor %}
+    </table>
+    <div class="note" style="margin-top:8px;">Route geometry shown here is the geometry returned by the current voyage session. No synthetic offset is applied merely to make routes appear different.</div>
+  </section>
+
+  <section class="section no-break">
+    <div class="section-title"><span class="num">06</span><h2>Alerts &amp; Data Provenance</h2></div>
+    <table class="table">
+      <tr><th>Type</th><th>Message / Source</th><th>Time</th></tr>
+      {% for a in alerts|default([]) %}
+      <tr><td><strong>{{ a.type }}</strong></td><td>{{ a.message }}</td><td>{{ a.time }}</td></tr>
+      {% else %}
+      <tr><td colspan="3" class="muted">No alert records supplied in this report payload.</td></tr>
+      {% endfor %}
+    </table>
+    <div style="height:7px"></div>
+    <table class="table">
+      <tr><th>Dataset / Component</th><th>Record / Status</th><th>Retrieved / Computed</th></tr>
+      {% for p in provenance|default([]) %}
+      <tr><td><strong>{{ p.name }}</strong></td><td>{{ p.record }}</td><td>{{ p.retrieved_at }}</td></tr>
+      {% else %}
+      <tr><td colspan="3" class="muted">No provenance records supplied in this report payload.</td></tr>
+      {% endfor %}
+    </table>
+  </section>
+
+  <section class="section no-break">
+    <div class="section-title"><span class="num">07</span><h2>Captain / Master Decision</h2></div>
+    <div class="decision-box">
+      <div class="decision-head">
+        <div>
+          <div class="risk-label">Recorded decision</div>
+          <div class="decision-state">{{ decision.state|default('PENDING') }}</div>
+        </div>
+        <div class="authority">Final voyage and navigation authority<br><strong>Captain / Master remains responsible for the final decision.</strong></div>
+      </div>
+      {% if decision.remarks %}<div style="margin-top:8px;"><strong>Remarks:</strong> {{ decision.remarks }}</div>{% endif %}
+    </div>
+  </section>
+
+  <section class="section no-break">
+    <div class="section-title"><span class="num">08</span><h2>Audit Trail</h2></div>
+    <table class="table timeline">
+      <tr><th>Time</th><th>Event</th><th>Detail</th></tr>
+      {% for e in audit_events|default([]) %}
+      <tr><td>{{ e.time }}</td><td>{{ e.event }}</td><td>{{ e.detail }}</td></tr>
+      {% else %}
+      <tr><td colspan="3" class="muted">No audit events supplied in this report payload.</td></tr>
+      {% endfor %}
+    </table>
+  </section>
+
+  {% if signature_block|default(false) %}
+  <div class="signature-grid">
+    <div class="sig">Prepared / generated by HimDrishti decision-support system</div>
+    <div class="sig">Reviewed by authorised human operator / Captain / Master</div>
+  </div>
+  {% endif %}
+
+  <div class="disclaimer">
+    <strong>Prototype and use limitation:</strong> This document is a demonstration output of the HimDrishti SIH 2026 prototype. It is not an official Government of India publication, not an operational navigation instruction, and not a substitute for authoritative charts, forecasts, ice information, vessel procedures, or the professional judgment of the Captain / Master.
+  </div>
+</div>
+</body>
+</html>

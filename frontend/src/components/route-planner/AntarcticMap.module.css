@@ -1,0 +1,149 @@
+/* AntarcticMap.module.css
+   SIH 2026 · PS 26059 / PS 26188
+   Official scientific map container matching reference-ui2.png */
+
+.centerContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 6px;
+  padding: 6px;
+  background: #eef2f6;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ── Top Header Bar above Map (No Sub-Tabs) ── */
+.mapHeaderBar {
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 6px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.mapSectionTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.mapActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fullscreenBtn {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  color: #475569;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.fullscreenBtn:hover {
+  color: #0f172a;
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+/* ── Map Canvas Wrapper ─────────────────────── */
+.mapCanvasWrapper {
+  flex: 1;
+  min-height: 380px;
+  position: relative;
+  background: #1a5276;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+}
+
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 35, 60, 0.88);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #bae6fd;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 30;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(56, 189, 248, 0.3);
+  border-top-color: #38bdf8;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Route midpoint pill label */
+.routeLabelPill {
+  padding: 2px 7px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  user-select: none;
+  border: 1.5px solid;
+  pointer-events: auto;
+}
+
+/* Scale Bar (bottom-left) */
+.scaleBar {
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  z-index: 12;
+  user-select: none;
+}
+
+.scaleTicks {
+  display: flex;
+  justify-content: space-between;
+  width: 140px;
+  font-size: 8px;
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 1px 2px #000;
+  margin-bottom: 2px;
+}
+
+.scaleLine {
+  width: 140px;
+  height: 4px;
+  border: 1px solid #ffffff;
+  border-top: none;
+  background: linear-gradient(to right, #ffffff 50%, rgba(0, 0, 0, 0.5) 50%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Forecast Timeline Container ────────────── */
+.timelineContainer {
+  flex-shrink: 0;
+}

@@ -1,0 +1,163 @@
+# ============================================================
+# HimDrishti — .gitignore
+# SIH 2026 · PS 26059
+# ============================================================
+
+# ------------------------------------------------------------
+# Node / Frontend
+# ------------------------------------------------------------
+node_modules/
+dist/
+.vite/
+*.local
+.cache/
+.parcel-cache/
+frontend/dist/
+frontend/.vite/
+frontend/node_modules/
+
+# ------------------------------------------------------------
+# Python / Backend & AI modules
+# ------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+.python-version
+
+# pytest
+.pytest_cache/
+.coverage
+coverage/
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# mypy / type checkers
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# ------------------------------------------------------------
+# Environment & Secrets
+# ------------------------------------------------------------
+.env
+.env.*
+!.env.example
+.env.local
+.env.development
+.env.production
+.env.test
+secrets/
+credentials/
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Temporary audit files
+requirements_audit.txt
+
+# ------------------------------------------------------------
+# IDE
+# ------------------------------------------------------------
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+.project
+.classpath
+.settings/
+
+# ------------------------------------------------------------
+# Operating System
+# ------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------------------------
+# Logs
+# ------------------------------------------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ------------------------------------------------------------
+# Generated / Build artefacts
+# ------------------------------------------------------------
+*.map
+storybook-static/
+.docusaurus/
+.serverless/
+
+# ------------------------------------------------------------
+# Data — large raw/processed scientific data files
+# (source code, synthetic fixtures, and small test data are tracked)
+# ------------------------------------------------------------
+data/raw/*.nc
+data/raw/*.h5
+data/raw/*.hdf5
+data/raw/*.tif
+data/raw/*.tiff
+data/raw/*.geotiff
+data/raw/*.zarr
+data/processed/*.nc
+data/processed/*.h5
+
+# Generated replay artifacts (timestamped test outputs)
+data/historical_replay/replay_*/
+
+# ------------------------------------------------------------
+# DO NOT IGNORE (these must remain tracked)
+# ------------------------------------------------------------
+# design.md
+# reference-ui.png
+# README.md
+# docs/
+# tests/
+# All source code

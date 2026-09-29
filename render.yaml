@@ -1,0 +1,57 @@
+# ================================================================
+# render.yaml — HimDrishti SIH 2026 Deployment Configuration
+# SIH 2026 · PS 26059
+#
+# Two services:
+#   1. himdrishti-api   — FastAPI backend (Render Web Service)
+#   2. himdrishti-ui    — React/Vite frontend (Render Static Site)
+#
+# Environment variables containing secrets or deployment-specific
+# URLs (ALLOWED_ORIGINS, VITE_API_BASE_URL) MUST be set in the
+# Render dashboard — they are NOT committed to this file.
+#
+# ================================================================
+
+services:
+  # ──────────────────────────────────────────────────────────────
+  # 1. Backend — FastAPI Web Service
+  # ──────────────────────────────────────────────────────────────
+  - type: web
+    name: himdrishti-api
+    runtime: python
+    # Build: install dependencies
+    buildCommand: pip install -r requirements.txt
+    # Start: Render injects $PORT automatically — uvicorn reads it
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    # Health check endpoint
+    healthCheckPath: /health
+    envVars:
+      # Set ALLOWED_ORIGINS in the Render dashboard (NOT here):
+      #   ALLOWED_ORIGINS=https://himdrishti-ui.onrender.com
+      # This env var is listed as a reminder — do NOT add values here.
+      - key: ALLOWED_ORIGINS
+        sync: false    # must be set manually in Render dashboard
+      - key: PYTHON_VERSION
+        value: "3.11"
+
+  # ──────────────────────────────────────────────────────────────
+  # 2. Frontend — React/Vite Static Site
+  # ──────────────────────────────────────────────────────────────
+  - type: static
+    name: himdrishti-ui
+    # Build root is the frontend subdirectory
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    # Vite outputs to dist/
+    staticPublishPath: ./dist
+    # SPA: All routes fall back to index.html for client-side routing
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      # Set VITE_API_BASE_URL in the Render dashboard (NOT here):
+      #   VITE_API_BASE_URL=https://himdrishti-api.onrender.com
+      # This env var is listed as a reminder — do NOT add values here.
+      - key: VITE_API_BASE_URL
+        sync: false    # must be set manually in Render dashboard

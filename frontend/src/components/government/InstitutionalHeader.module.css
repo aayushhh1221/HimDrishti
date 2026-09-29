@@ -1,0 +1,190 @@
+/* =============================================================
+   InstitutionalHeader.module.css
+   SIH 2026 · PS 26188
+   Matches reference.png institutional header — ~82px height
+   White background, three-column layout
+   ============================================================= */
+
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid #d9e1e8;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 0;
+  position: sticky;
+  top: 36px; /* below utility bar */
+  z-index: 90;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* ── Left: Ministry identity ────────────────────────── */
+.leftZone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.governmentEmblem {
+  width: 40px;
+  height: auto;
+  flex-shrink: 0;
+  object-fit: contain;
+  display: block;
+}
+
+.ministryText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ministryName {
+  font-size: 13px;
+  font-weight: 700;
+  color: #102a43;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.ministrySubtext {
+  font-size: 11px;
+  font-weight: 500;
+  color: #627d98;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* Vertical divider between zones */
+.divider {
+  width: 1px;
+  height: 48px;
+  background: #d9e1e8;
+  flex-shrink: 0;
+  margin: 0 18px;
+}
+
+/* ── Center: HimDrishti identity ────────────────────── */
+.centerZone {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+.himDrishtiLogo {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  object-fit: contain;
+  display: block;
+}
+
+.himDrishtiIdentity {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.wordmarkRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.wordmark {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0b2545;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 12px;
+  font-weight: 500;
+  color: #334e68;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.sihTag {
+  font-size: 11px;
+  font-weight: 600;
+  color: #627d98;
+  line-height: 1.2;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.rightZone {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.ncporRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ncporLogo {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  object-fit: contain;
+  display: block;
+}
+
+.ncporText {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  text-align: left;
+}
+
+.ncporName {
+  font-size: 12px;
+  font-weight: 700;
+  color: #102a43;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.ncporSubtext {
+  font-size: 10px;
+  font-weight: 500;
+  color: #627d98;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .subtitle {
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 900px) {
+  .rightZone {
+    display: none;
+  }
+  .divider {
+    display: none;
+  }
+}

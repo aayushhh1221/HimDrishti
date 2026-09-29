@@ -1,0 +1,5 @@
+NATIONAL FLAG ASSET NOTE
+
+The report template uses the user-provided Indian national flag image supplied in the conversation.
+Asset path: assets/indian-flag-uploaded.png
+It is placed immediately to the left of the “Government of India” identity in the report header.

@@ -1,0 +1,60 @@
+/* RiskGauge.module.css — HimDrishti Phase 5 / Phase 12.1 */
+
+.gaugeWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 0;
+  user-select: none;
+}
+
+.gaugeSvg {
+  width: 126px;
+  height: 78px;
+  display: block;
+  overflow: visible;
+}
+
+.scaleLabel {
+  font-family: inherit;
+  font-size: 8px;
+  font-weight: 700;
+  fill: #64748b;
+  user-select: none;
+}
+
+.rioNumber {
+  font-family: inherit;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.rioDenom {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  fill: #475569;
+}
+
+.levelSvgLabel {
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

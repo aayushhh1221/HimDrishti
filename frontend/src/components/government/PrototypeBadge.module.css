@@ -1,0 +1,15 @@
+/* PrototypeBadge.module.css */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1.5px solid #287d7a;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #287d7a;
+  background: transparent;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  line-height: 1.4;
+}

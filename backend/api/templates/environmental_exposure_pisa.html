@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Environmental Exposure Summary — HimDrishti</title>
+  <style>
+/* xhtml2pdf / ReportLab compatible stylesheet — table layout, CSS 2.1 */
+@page {
+  size: A4 portrait;
+  margin: 15mm 16mm 20mm 16mm;
+  @bottom-right { content: "Page " counter(page); font-size: 7.5pt; color: #5d6875; }
+  @frame footer_frame {
+    -pdf-frame-content: footerContent;
+    bottom: 8mm;
+    margin-left: 16mm;
+    margin-right: 16mm;
+    height: 6mm;
+  }
+}
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 8.8pt;
+  color: #1c2732;
+  line-height: 1.42;
+  margin: 0;
+  background: #fff;
+}
+.page-break { page-break-before: always; }
+.no-break   { page-break-inside: avoid; }
+.muted      { color: #6d7885; }
+
+/* ── Government header ── */
+.gov-header {
+  border-bottom: 2.5px solid #17324d;
+  padding-bottom: 7px;
+  margin-bottom: 12px;
+}
+.gov-header-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.gov-flag-cell {
+  width: 44px;
+  vertical-align: middle;
+  padding: 0 9px 0 0;
+}
+.gov-flag {
+  width: 39px;
+  height: 26px;
+}
+.gov-copy-cell {
+  vertical-align: middle;
+}
+.gov-copy-line1 {
+  font-size: 13pt;
+  font-weight: bold;
+  color: #182735;
+  font-family: Georgia, serif;
+}
+.gov-copy-line2 {
+  font-size: 9pt;
+  color: #334658;
+  margin-top: 1px;
+}
+.org-right-cell {
+  text-align: right;
+  vertical-align: middle;
+  font-size: 8pt;
+  color: #536272;
+  line-height: 1.3;
+  width: 175px;
+}
+.org-right-cell strong { color: #17324d; }
+
+/* ── Brand banner ── */
+.brand-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.brand-left-cell {
+  vertical-align: middle;
+}
+.brand-wordmark {
+  font-size: 21pt;
+  font-weight: bold;
+  color: #17324d;
+  letter-spacing: 1.3px;
+  font-family: Georgia, serif;
+}
+.brand-sub {
+  font-size: 8.5pt;
+  color: #536272;
+  letter-spacing: 0.35px;
+  margin-top: 1px;
+}
+.brand-center-cell {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0 12px;
+}
+.prototype-badge {
+  border: 1px solid #ba7b3b;
+  color: #8c520e;
+  font-size: 7.2pt;
+  font-weight: bold;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  padding: 3px 7px;
+}
+.brand-right-cell {
+  text-align: right;
+  vertical-align: middle;
+  border-left: 1px solid #cfd6dd;
+  padding-left: 12px;
+  font-size: 8.5pt;
+  color: #536272;
+  width: 180px;
+}
+.brand-right-cell strong { display: block; color: #17324d; font-size: 9.5pt; }
+
+/* ── Title block ── */
+.title-block {
+  margin: 13px 0 11px 0;
+  border-left: 4px solid #0f6f78;
+  padding-left: 12px;
+}
+.title-h1 {
+  margin: 0;
+  font-size: 20pt;
+  line-height: 1.15;
+  color: #17324d;
+  font-family: Georgia, serif;
+  font-weight: bold;
+}
+.title-subtitle {
+  margin-top: 6px;
+  color: #536272;
+  font-size: 10pt;
+}
+
+/* ── Meta grid (Table based for xhtml2pdf) ── */
+.meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #cfd6dd;
+  background: #f4f6f8;
+  margin-bottom: 14px;
+}
+.meta-table td {
+  padding: 8px 9px;
+  border-right: 1px solid #cfd6dd;
+  border-bottom: 1px solid #cfd6dd;
+  width: 33.33%;
+  vertical-align: top;
+}
+.meta-table td:last-child { border-right: 0; }
+.meta-label { color: #6d7885; font-size: 7.2pt; text-transform: uppercase; letter-spacing: 0.45px; }
+.meta-value { margin-top: 2px; color: #243746; font-weight: bold; font-size: 8.6pt; }
+
+/* ── Sections ── */
+.section { margin-top: 11px; }
+.section-title-table { width: 100%; border-collapse: collapse; border-bottom: 1px solid #17324d; margin-bottom: 6px; padding-bottom: 4px; }
+.section-num  { font-size: 8pt; color: #0f6f78; font-weight: bold; white-space: nowrap; padding-right: 8px; width: 22px; }
+.section-h2   { margin: 0; font-size: 13pt; color: #17324d; font-family: Georgia, serif; font-weight: bold; }
+
+/* ── Tables ── */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th { background: #17324d; color: #fff; font-size: 7.8pt; text-align: left; padding: 5px 6px; border: 1px solid #17324d; }
+.data-table td { padding: 5px 6px; border: 1px solid #cfd6dd; vertical-align: top; }
+.data-table tr:nth-child(even) td { background: #fbfcfd; }
+.col-label { color: #6d7885; font-size: 8pt; width: 26%; }
+.col-value { color: #1d2a36; font-weight: 600; }
+
+/* ── KPI table ── */
+.kpi-table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.kpi-table td { border: 1px solid #cfd6dd; background: #fff; padding: 8px; vertical-align: top; width: 33.33%; }
+.kpi-label { font-size: 7pt; color: #6d7885; text-transform: uppercase; letter-spacing: 0.35px; }
+.kpi-value { font-size: 13pt; color: #17324d; font-weight: bold; margin-top: 2px; }
+.kpi-unit  { font-size: 7.5pt; color: #536272; font-weight: normal; }
+.kpi-sub   { font-size: 7.2pt; color: #6d7885; margin-top: 3px; }
+
+/* ── Notes ── */
+.note-box  { border: 1px solid #cfd6dd; background: #fcfcfc; padding: 8px 10px; color: #465461; font-size: 8pt; margin-top: 7px; }
+.avail-note{ border: 1px solid #f6d860; background: #fffbeb; padding: 7px 10px; color: #78350f; font-size: 7.8pt; margin-top: 6px; }
+
+/* ── Disclaimer ── */
+.disclaimer { margin-top: 16px; border-top: 2px solid #7e858b; padding-top: 7px; font-size: 7.3pt; color: #646c73; }
+.disclaimer strong { color: #41484f; }
+  </style>
+</head>
+<body>
+<div id="footerContent" style="text-align: right; font-size: 7.5pt; color: #5d6875; font-family: Helvetica, Arial, sans-serif;">
+  Page <pdf:pagenumber>
+</div>
+
+{# ── Government header ── #}
+<div class="gov-header">
+  <table class="gov-header-table">
+    <tr>
+      {# FLAG LEFT — immediately beside "Government of India" #}
+      <td class="gov-flag-cell">
+        <img class="gov-flag" src="{{ flag_src }}" alt="National Flag of India">
+      </td>
+      <td class="gov-copy-cell">
+        <div class="gov-copy-line1">Government of India</div>
+        <div class="gov-copy-line2">Ministry of Earth Sciences</div>
+      </td>
+      <td class="org-right-cell">
+        <strong>National Centre for Polar</strong><br>
+        and Ocean Research<br>
+        Ministry of Earth Sciences
+      </td>
+    </tr>
+  </table>
+  <table class="brand-table">
+    <tr>
+      <td class="brand-left-cell">
+        <div class="brand-wordmark">HIMDRISHTI</div>
+        <div class="brand-sub">Polar Voyage Decision-Support &amp; Risk Assessment</div>
+      </td>
+      <td class="brand-center-cell">
+        <span class="prototype-badge">SIH 2026 Prototype &mdash; Not for Operational Use</span>
+      </td>
+      <td class="brand-right-cell">
+        <strong>Environmental Exposure Summary</strong>
+        SIH 2026 &middot; PS 26059
+      </td>
+    </tr>
+  </table>
+</div>
+
+{# ── Title block ── #}
+<div class="title-block">
+  <div class="title-h1">Environmental Exposure Summary</div>
+  <div class="title-subtitle">Synthesized report on available HimDrishti scientific pipeline environmental outputs for the configured voyage corridor. Only values present in the session pipeline output are shown &mdash; no environmental observations are fabricated.</div>
+</div>
+
+{# ── Meta grid (Horizontal 3-column table) ── #}
+<table class="meta-table">
+  <tr>
+    <td><div class="meta-label">Programme</div><div class="meta-value">Smart India Hackathon 2026</div></td>
+    <td><div class="meta-label">Problem Statement</div><div class="meta-value">SIH 2026 &middot; PS 26059</div></td>
+    <td><div class="meta-label">Session ID</div><div class="meta-value" style="font-family:monospace">{{ dossier.session_id[:8]|upper }}</div></td>
+  </tr>
+  <tr>
+    <td style="border-bottom:0"><div class="meta-label">Generated (UTC)</div><div class="meta-value">{{ dossier.generated_at_utc[:19].replace('T',' ') }}</div></td>
+    <td style="border-bottom:0"><div class="meta-label">Route</div><div class="meta-value">{{ dossier.selected_route.name }}</div></td>
+    <td style="border-bottom:0"><div class="meta-label">Data Mode</div><div class="meta-value">{{ dossier.selected_route.data_mode }}</div></td>
+  </tr>
+</table>
+
+{# ── 01 Voyage Scope ── #}
+<div class="section">
+  <table class="section-title-table"><tr><td class="section-num">01</td><td><h2 class="section-h2">Voyage Scope</h2></td></tr></table>
+  <table class="data-table">
+    <tr>
+      <td class="col-label">Origin</td><td class="col-value">{{ dossier.voyage_configuration.origin }}</td>
+      <td class="col-label">Destination</td><td class="col-value">{{ dossier.voyage_configuration.destination }}</td>
+    </tr>
+    <tr>
+      <td class="col-label">Departure (UTC)</td><td class="col-value" style="font-family:monospace">{{ dossier.voyage_configuration.departure_time }}</td>
+      <td class="col-label">Operating Mode</td><td class="col-value">{{ dossier.voyage_configuration.operating_mode }}</td>
+    </tr>
+  </table>
+</div>
+
+{# ── 02 Forecast Horizon ── #}
+<div class="section">
+  <table class="section-title-table"><tr><td class="section-num">02</td><td><h2 class="section-h2">Forecast Horizon &amp; Sea-Ice Prediction</h2></td></tr></table>
+  {% if forecast %}
+  <table class="kpi-table">
+    <tr>
+      <td>
+        <div class="kpi-label">Horizon</div>
+        <div class="kpi-value">{{ forecast.horizon_hours }}<span class="kpi-unit"> h</span></div>
+        <div class="kpi-sub">Forecast window configured</div>
+      </td>
+      <td>
+        <div class="kpi-label">Steps</div>
+        <div class="kpi-value">{{ forecast.horizon_steps|length }}<span class="kpi-unit"> pts</span></div>
+        <div class="kpi-sub">{{ forecast.interval_hours }}h interval</div>
+      </td>
+      <td>
+        <div class="kpi-label">Data Mode</div>
+        <div class="kpi-value" style="font-size:10pt;">{{ forecast.data_mode }}</div>
+        <div class="kpi-sub">{{ forecast.prototype_notice[:45] }}</div>
+      </td>
+    </tr>
+  </table>
+  {% else %}
+  <div class="avail-note">Forecast data not included in this report payload. Generate routes from the Route Planner to populate forecast values.</div>
+  {% endif %}
+  {% if sea_ice_forecast %}
+  <div style="height:6px"></div>
+  <table class="data-table">
+    <tr>
+      <td class="col-label">Forecast Method</td>
+      <td class="col-value">{{ sea_ice_forecast.method }}</td>
+      <td class="col-label">Baseline Method</td>
+      <td class="col-value">{{ sea_ice_forecast.baseline_method }}</td>
+    </tr>
+    <tr>
+      <td class="col-label">Reference Time</td>
+      <td class="col-value" style="font-family:monospace;font-size:7.5pt;">{{ sea_ice_forecast.reference_time[:19].replace('T', ' ') }} UTC</td>
+      <td class="col-label">Confidence / Status</td>
+      <td class="col-value">
+        {% if sea_ice_forecast.metrics and sea_ice_forecast.metrics.evaluation_status %}
+          {{ sea_ice_forecast.metrics.evaluation_status }}
+        {% elif sea_ice_forecast.steps and sea_ice_forecast.steps[0].confidence %}
+          {{ sea_ice_forecast.steps[0].confidence }}
+        {% else %}
+          AVAILABLE
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td class="col-label">Persistence MAE / RMSE</td>
+      <td class="col-value">
+        {% if sea_ice_forecast.metrics and sea_ice_forecast.metrics.persistence_mae is not none %}
+          MAE: {{ sea_ice_forecast.metrics.persistence_mae|round(4) }} | RMSE: {{ sea_ice_forecast.metrics.persistence_rmse|round(4) }}
+        {% else %}
+          &mdash;
+        {% endif %}
+      </td>
+      <td class="col-label">Model MAE / RMSE</td>
+      <td class="col-value">
+        {% if sea_ice_forecast.metrics and sea_ice_forecast.metrics.model_mae is not none %}
+          MAE: {{ sea_ice_forecast.metrics.model_mae|round(4) }} | RMSE: {{ sea_ice_forecast.metrics.model_rmse|round(4) }}
+        {% else %}
+          Baseline retained (no ML override)
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td class="col-label">Source Dataset</td>
+      <td class="col-value" colspan="3">
+        {{ sea_ice_forecast.source_dataset or 'Sea-ice observation field' }}
+        {% if sea_ice_forecast.source_organisation %}
+          &middot; {{ sea_ice_forecast.source_organisation }}
+        {% endif %}
+      </td>
+    </tr>
+  </table>
+  {% endif %}
+</div>
+
+{# ── 03 Iceberg Drift Ensemble ── #}
+<div class="section">
+  <table class="section-title-table"><tr><td class="section-num">03</td><td><h2 class="section-h2">Iceberg Drift Ensemble</h2></td></tr></table>
+  <div class="avail-note">
+    Iceberg ensemble outputs available from the pipeline after route generation. Values not supplied in this report payload.
+    The HimDrishti pipeline runs a 48-member iceberg drift ensemble to build the hazard field used in route search.
+  </div>
+  <div class="note-box">Satellite detection may miss small growlers and bergy bits. Radar watch and visual lookout remain necessary regardless of pipeline output.</div>
+</div>
+
+{# ── 04 Pipeline Hazard Field ── #}
+<div class="section">
+  <table class="section-title-table"><tr><td class="section-num">04</td><td><h2 class="section-h2">Pipeline Hazard Field</h2></td></tr></table>
+  <div class="avail-note">Hazard field summary not included in this report payload. The field is computed by the pipeline from sea-ice and iceberg ensemble outputs and used to weight the Dijkstra / UCS route search.</div>
+</div>
+
+{# ── 05 Data Provenance ── #}
+<div class="section no-break">
+  <table class="section-title-table"><tr><td class="section-num">05</td><td><h2 class="section-h2">Data Provenance</h2></td></tr></table>
+  <table class="data-table">
+    <tr><th>Dataset / Component</th><th>Status</th><th>Retrieved / Computed</th></tr>
+    {% for p in provenance %}
+    <tr><td><strong>{{ p.name }}</strong></td><td>{{ p.record }}</td><td>{{ p.retrieved_at }}</td></tr>
+    {% else %}
+    <tr><td colspan="3" class="muted">No provenance records supplied in this report payload.</td></tr>
+    {% endfor %}
+  </table>
+</div>
+
+{# ── 06 Operational Alerts ── #}
+<div class="section no-break">
+  <table class="section-title-table"><tr><td class="section-num">06</td><td><h2 class="section-h2">Operational Alerts</h2></td></tr></table>
+  <table class="data-table">
+    <tr><th>Severity</th><th>Title</th><th>Description</th></tr>
+    {% for a in alerts %}
+    <tr><td><strong>{{ a.type }}</strong></td><td>{{ a.message }}</td><td>{{ a.time }}</td></tr>
+    {% else %}
+    <tr><td colspan="3" class="muted">No alert records supplied in this report payload.</td></tr>
+    {% endfor %}
+  </table>
+</div>
+
+{# ── Prototype disclaimer ── #}
+<div class="disclaimer">
+  <strong>Prototype and use limitation:</strong> {{ dossier.prototype_disclaimer }}
+  Environmental metrics shown are limited strictly to values present in the HimDrishti pipeline output for this session.
+  Temperature, waves, visibility, pressure and other in-situ observations are NOT included because they are not available from this pipeline and have not been fabricated.
+</div>
+
+</body>
+</html>

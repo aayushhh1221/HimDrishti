@@ -1,0 +1,87 @@
+/* RoutePlannerWorkspace.module.css
+   SIH 2026 · PS 26059 / PS 26188
+   Three-column mission-control workspace layout matching reference-ui2.png */
+
+.workspace {
+  position: relative;
+  display: flex;
+  height: 530px;
+  min-height: 480px;
+  overflow: hidden;
+  background: #eef2f6;
+  gap: 0;
+}
+
+/* ── Left panel — Voyage Configuration (~295px) ─── */
+.leftPanel {
+  position: relative;
+  width: 295px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-right: 1px solid #d9e2ec;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Center panel — Map & Routing Overview (flex-1) ── */
+.centerPanel {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #eef2f6;
+}
+
+/* ── Right panel — Route Comparison (~335px) ── */
+.rightPanel {
+  position: relative;
+  width: 335px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-left: 1px solid #d9e2ec;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive: 1366x768 optimized view */
+@media (max-width: 1400px) {
+  .leftPanel  { width: 280px; }
+  .rightPanel { width: 320px; }
+}
+
+@media (max-width: 1150px) {
+  .leftPanel  { width: 250px; }
+  .rightPanel { width: 290px; }
+}
+
+/* Responsive: tablet & mobile stack */
+@media (max-width: 860px) {
+  .workspace {
+    flex-direction: column;
+    height: auto;
+    min-height: unset;
+  }
+
+  .leftPanel {
+    width: 100% !important;
+    max-height: 380px;
+    border-right: none;
+    border-bottom: 1px solid #d9e2ec;
+  }
+
+  .centerPanel {
+    width: 100%;
+    min-height: 450px;
+  }
+
+  .rightPanel {
+    width: 100% !important;
+    max-height: 400px;
+    border-left: none;
+    border-top: 1px solid #d9e2ec;
+  }
+}

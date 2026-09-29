@@ -1,0 +1,22 @@
+/* RiskCompliance — Phase 11 */
+.page { width: 100%; max-width: 900px; margin: 0 auto; padding: 24px 20px; background: #f7f8fa; min-height: calc(100vh - 214px); }
+.pageHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+.heading { font-size: 20px; font-weight: 700; color: #102a43; margin: 0 0 6px 0; }
+.sub { font-size: 13px; color: #52606d; max-width: 560px; line-height: 1.6; margin: 0; }
+.tag { margin-top: 24px; font-size: 11px; color: #287d7a; font-weight: 600; }
+.modeBadge { padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; color: #f0f4f8; background: #312e1a; letter-spacing: 0.04em; white-space: nowrap; }
+.card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+.cardTitle { font-size: 12px; font-weight: 700; color: #102a43; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+.dl { display: grid; grid-template-columns: 200px 1fr; gap: 6px 12px; }
+.dlRow { display: contents; }
+.dlRow dt { font-size: 12px; color: #718096; font-weight: 600; }
+.dlRow dd { font-size: 12px; color: #2d3748; margin: 0; }
+.mono { font-family: monospace; font-size: 11px; }
+.explanation { margin-top: 10px; font-size: 12px; color: #52606d; line-height: 1.5; padding: 8px; background: #f7f8fa; border-radius: 4px; }
+.table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.table th { text-align: left; padding: 6px 8px; font-size: 11px; color: #718096; font-weight: 600; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; }
+.table td { padding: 7px 8px; color: #2d3748; border-bottom: 1px solid #f0f4f8; }
+.table tr:last-child td { border-bottom: none; }
+.rowSelected td { background: #ebf8ff; }
+.warnBanner { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; padding: 10px 14px; border-radius: 6px; font-size: 13px; margin-bottom: 12px; }
+.noticeBox { background: #fffbeb; border: 1px solid #fcd34d; border-radius: 6px; padding: 10px 14px; font-size: 12px; color: #78350f; line-height: 1.5; margin-bottom: 12px; }

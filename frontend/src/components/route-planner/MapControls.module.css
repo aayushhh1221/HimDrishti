@@ -1,0 +1,46 @@
+/* MapControls.module.css */
+
+.controls {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 10;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #d9e1e8;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.controlBtn {
+  background: #ffffff;
+  border: none;
+  border-bottom: 1px solid #e8eef4;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #334e68;
+  transition: background 120ms ease, color 120ms ease;
+  position: relative;
+}
+
+.controlBtn:last-child { border-bottom: none; }
+.controlBtn:hover { background: #f0f4f8; color: #102a43; }
+.controlBtn:focus-visible { outline: 2px solid #287d7a; outline-offset: -2px; }
+.controlBtn:active { background: #d9f0ee; }
+
+.separator {
+  height: 6px;
+}

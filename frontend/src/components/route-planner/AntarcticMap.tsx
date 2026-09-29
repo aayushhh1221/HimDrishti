@@ -200,8 +200,9 @@ export default function AntarcticMap({
 
       const apiRoute = apiRoutes.find((r) => r.route_id === spec.id)
 
-      // If no route or not distinct or empty points: clear the source line
-      if (!apiRoute || !apiRoute.is_distinct || apiRoute.points.length === 0) {
+      // If no route or empty points: clear the source line
+      // Note: we draw routes even if not distinct — convergence is shown as a UI warning
+      if (!apiRoute || apiRoute.points.length === 0) {
         source.setData({ type: 'FeatureCollection', features: [] })
         return
       }
